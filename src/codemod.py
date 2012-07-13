@@ -359,7 +359,8 @@ class Query:
     path_list = Query._walk_directory(self.root_directory)
     path_list = Query._sublist(path_list, start_pos.path, end_pos.path)
     path_list = (path for path in path_list if
-                 Query._path_looks_like_code(path) and self.path_filter(path))
+                 Query._path_looks_like_code(path) and self.path_filter(path)
+                 and os.access(path, os.W_OK))
 
     for path in path_list:
 
